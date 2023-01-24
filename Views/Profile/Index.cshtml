@@ -1,0 +1,30 @@
+﻿@model List<Profile>
+@{
+    ViewBag.Single = "Perfil";
+    ViewBag.Plural = "Perfiles";
+}
+<h1 class="fw-bolder text-center">@ViewBag.Plural.ToUpper()</h1>
+<div>
+    <a asp-action="Create" class="btn btn-outline-success fw-bolder">AGREGAR @ViewBag.Single.ToUpper()</a>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Perfil</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(i=>item.Name)</td>
+                <td>
+                    @Html.ActionLink("EDITAR","Edit",this,new {id=item.Id})
+                    <a asp-action="Edit" class="btn btn-primary">EDITAR - @item.Id</a>
+                    <a asp-action="Delete/@item.Id" class="btn btn-danger">ELIMINAR</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
